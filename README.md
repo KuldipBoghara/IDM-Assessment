@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `npm run dev`
 
-It will run both JSON-Server and project togather.
+It will run both JSON-Server and project togather.\
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
@@ -17,7 +17,7 @@ You will also see any lint errors in the console.
 
 ### `Special Note`
 
-Currently, we are able to fetch Data from JSON-Server but other operation like Add, Update and Delete is not suported.
+Currently, we are able to fetch Data from JSON-Server but other operation like Add, Update and Delete is not suported.\
 Double click functionality is working to see the reservation details.
 
 
