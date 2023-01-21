@@ -22,10 +22,9 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Switch from '@mui/material/Switch';
 
 import AssessmentContext from '../Context/AssessmentContext';
+import InputTags from './InputTags';
 
 function Details() {
-  const checklabel = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
   const [firstname, setFirstName] = useState('');
   const [lastname, setLastName] = useState('');
   const [suite, setSuite] = useState('');
@@ -51,7 +50,8 @@ function Details() {
     dayjs('2023-01-13')
   );
 
-  const { selectedreservation, reservation } = useContext(AssessmentContext);
+  const { selectedreservation, reservation, setTags } =
+    useContext(AssessmentContext);
 
   const extras = [
     'extraBreakfast',
@@ -71,7 +71,6 @@ function Details() {
     const currentreser = reservation.filter(
       (item: any) => item.email === selectedreservation
     );
-    console.log(currentreser);
     setArrivalDate(currentreser[0].stay.arrivalDate);
     setDepartureDate(currentreser[0].stay.departureDate);
     setSuite(currentreser[0].room.roomSize);
@@ -90,6 +89,8 @@ function Details() {
     setReminder(currentreser[0].reminder);
     setNewsLetter(currentreser[0].newsletter);
     setConfirm(currentreser[0].confirm);
+    setTags([...currentreser[0].tags]);
+    setExtraFacilities([...currentreser[0].extras]);
   };
 
   const handleExtra = (event: SelectChangeEvent<typeof extrafacilities>) => {
@@ -297,7 +298,7 @@ function Details() {
 
           <FormControl
             variant="standard"
-            sx={{ width: '20%', marginTop: '2%' }}
+            sx={{ width: '40%', marginTop: '2%' }}
           >
             <InputLabel>Extras</InputLabel>
             <Select
@@ -346,6 +347,8 @@ function Details() {
               setNote(event.target.value);
             }}
           />
+
+          <InputTags />
 
           <div style={{ marginTop: 30 }}>
             <FormControlLabel

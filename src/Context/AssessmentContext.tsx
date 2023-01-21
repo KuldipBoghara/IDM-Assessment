@@ -11,6 +11,7 @@ export const AssessmentProvider = ({ children }: AssessmentProviderProps) => {
   const [searchid, setSearchID] = useState<any>();
   const [selectedreservation, setSelectedReservation] = useState<string>();
   const [open, setOpen] = useState(false);
+  const [tags, setTags] = useState<any>([]);
 
   useEffect(() => {
     fetchReservation();
@@ -48,7 +49,9 @@ export const AssessmentProvider = ({ children }: AssessmentProviderProps) => {
         setSelectedReservation,
         handleClickOpen,
         setOpen,
-        open
+        open,
+        tags,
+        setTags
       }}
     >
       {children}
