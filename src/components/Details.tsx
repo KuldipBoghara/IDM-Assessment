@@ -20,6 +20,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Switch from '@mui/material/Switch';
+import { useForm, Controller } from 'react-hook-form';
 
 import AssessmentContext from '../Context/AssessmentContext';
 import InputTags from './InputTags';
@@ -40,7 +41,7 @@ function Details() {
   const [checkradio, setCheckRadio] = useState('');
   const [reminder, setReminder] = useState(true);
   const [newsletter, setNewsLetter] = useState(true);
-  const [confirm, setConfirm] = useState(false);
+  const [confirm, setConfirm] = useState(true);
 
   const [extrafacilities, setExtraFacilities] = useState<string[]>([]);
   const [arrivaldate, setArrivalDate] = React.useState<Dayjs | null>(
@@ -49,6 +50,7 @@ function Details() {
   const [departuredate, setDepartureDate] = React.useState<Dayjs | null>(
     dayjs('2023-01-13')
   );
+  const { register, handleSubmit, control } = useForm<FormData>();
 
   const { selectedreservation, reservation, setTags } =
     useContext(AssessmentContext);

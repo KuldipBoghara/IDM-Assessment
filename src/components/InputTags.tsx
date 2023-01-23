@@ -1,7 +1,7 @@
 import { Cancel } from '@mui/icons-material';
 import { InputLabel, Stack, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { useRef, useContext, useState } from 'react';
+import { useRef, useContext } from 'react';
 import AssessmentContext from '../Context/AssessmentContext';
 
 const Tags = ({ data, handleDelete }: any) => {
