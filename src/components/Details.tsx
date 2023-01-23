@@ -20,7 +20,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Switch from '@mui/material/Switch';
-import { useForm, Controller } from 'react-hook-form';
 
 import AssessmentContext from '../Context/AssessmentContext';
 import InputTags from './InputTags';
@@ -42,15 +41,17 @@ function Details() {
   const [reminder, setReminder] = useState(true);
   const [newsletter, setNewsLetter] = useState(true);
   const [confirm, setConfirm] = useState(true);
-
   const [extrafacilities, setExtraFacilities] = useState<string[]>([]);
-  const [arrivaldate, setArrivalDate] = React.useState<Dayjs | null>(
-    dayjs('2023-01-13')
+
+  let today = new Date();
+  var date =
+    today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  const [arrivaldate, setArrivalDate] = useState<Dayjs | null>(
+    dayjs(date.toString())
   );
-  const [departuredate, setDepartureDate] = React.useState<Dayjs | null>(
-    dayjs('2023-01-13')
+  const [departuredate, setDepartureDate] = useState<Dayjs | null>(
+    dayjs(date.toString())
   );
-  const { register, handleSubmit, control } = useForm<FormData>();
 
   const { selectedreservation, reservation, setTags } =
     useContext(AssessmentContext);
@@ -62,12 +63,6 @@ function Details() {
     'extraParking',
     'extraBalcony'
   ];
-
-  useEffect(() => {
-    if (selectedreservation) {
-      setValues();
-    }
-  }, []);
 
   const setValues = () => {
     const currentreser = reservation.filter(
@@ -94,6 +89,12 @@ function Details() {
     setTags([...currentreser[0].tags]);
     setExtraFacilities([...currentreser[0].extras]);
   };
+
+  useEffect(() => {
+    if (selectedreservation) {
+      setValues();
+    }
+  }, []);
 
   const handleExtra = (event: SelectChangeEvent<typeof extrafacilities>) => {
     const {

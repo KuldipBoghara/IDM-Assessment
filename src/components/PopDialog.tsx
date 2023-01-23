@@ -7,7 +7,6 @@ import { TransitionProps } from '@mui/material/transitions';
 
 import {
   AppBar,
-  Button,
   Dialog,
   IconButton,
   Slide,
@@ -53,9 +52,6 @@ function PopDialog() {
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               Reservation
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
-              save
-            </Button>
           </Toolbar>
         </AppBar>
         <Details />
